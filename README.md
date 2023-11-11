@@ -43,7 +43,7 @@ julia> models
 
 
 ## Training and forecast verification
-Train models for temperature (2m) and wind speed (10m) for each of the six forecast models by
+BQN models can be trained separately for parameter and forecast model from the `pangu-asr` directory by
 ```
 julia --project=./ train.jl t2 60 pangu
 julia --project=./ train.jl t2 60 hres
@@ -58,7 +58,7 @@ julia --project=./ train.jl ws10 60 meps
 julia --project=./ train.jl ws10 60 ens0
 julia --project=./ train.jl ws10 60 meps0
 ```
-from the `pangu-asr` directory. 3×3 BQN models are trained for each parameter/forecast model combination. In total the training takes about 4 hours.
+For each parameter/forecast model combination 3×3 BQN models are trained. In total the training takes about 4 hours.
 
 Verification statistics can be computed by
 ```
@@ -66,6 +66,6 @@ julia --threads=auto --project=./ verification.jl
 ```
 and plots by
 ```
-julia --threads=auto --project=./ plots.jl
+julia --project=./ plots.jl
 ```
 
