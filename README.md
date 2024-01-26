@@ -2,7 +2,7 @@
 The repository contains Julia source code for the arXiv article [Evaluation of forecasts by a global data-driven weather model with and without probabilistic post-processing at Norwegian stations](https://arxiv.org/abs/2309.01247).
 
 ##  Installation
-To setup the environment clone the repository, instatiate the julia project and download the data
+To setup the environment clone the repository, instantiate the julia project and download the data
 ```
 git clone git@github.com:jbbremnes/pangu-asr.git
 cd pangu-asr
@@ -40,7 +40,7 @@ julia> models
  "ens0"
  "meps0"
 ```
-
+For further processing the data file should be located in the `./data` directory.
 
 ## Training and forecast verification
 BQN models can be trained separately for parameter and forecast model from the `pangu-asr` directory by
@@ -58,7 +58,7 @@ julia --project=./ train.jl ws10 60 meps
 julia --project=./ train.jl ws10 60 ens0
 julia --project=./ train.jl ws10 60 meps0
 ```
-For each parameter/forecast model combination 3×3 BQN models are trained. In total the training takes about 4 hours.
+For each parameter/forecast model combination 3×3 BQN models are trained. The training takes about 4 hours in total.
 
 Verification statistics can be computed by
 ```
