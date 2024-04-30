@@ -217,10 +217,11 @@ sc_mae  = dropdims(mean(scores.mae, dims=2:3), dims=(2,3))
     
 #  temperature
 prm = 1
+lty_cal = :dot
 p1 = plot(scores.lts, sc_crps[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "continuous ranked probability score (K)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           legend = :bottomright, labels = labels, legendcolumns = 2, fg_legend = :transparent,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
@@ -228,7 +229,7 @@ p1 = plot(scores.lts, sc_crps[:,:,prm],
 p2 = plot(scores.lts, sc_mae[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "mean absolute error (K)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           legend = :false,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
@@ -237,36 +238,36 @@ p2 = plot(scores.lts, sc_mae[:,:,prm],
 p3 = plot(scores.lts, sc_crps[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "continuous ranked probability score (K)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           legend = false,
           #legend = :left, labels = [labels;labels], legendcolumns = 4, fg_legend = :transparent,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
           titleposition=:center)
 plot!(scores_raw.lts, scores_raw.crps[:,5:6,prm],
-      linewidth = attr.lwd, palette = cols[5:6], linestyle = :dash)
-annotate!([(6, 1.4, text("dashed lines:\nraw forecast models", 12, :left))])
+      linewidth = attr.lwd, palette = cols[5:6], linestyle = :solid)
+annotate!([(6, 1.4, text("solid lines:\nraw forecast models", 12, :left))])
 p4 = plot(scores.lts, sc_mae[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "mean absolute error (K)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           #legend = :topleft, labels = labels, legendcolumns = 2, fg_legend = :transparent,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
           titleposition=:center)
 plot!(scores_raw.lts, scores_raw.mae[:,:,prm],
-      linewidth = attr.lwd, palette = cols, linestyle = :dash, legend = false)
+      linewidth = attr.lwd, palette = cols, linestyle = :solid, legend = false)
 
 pout = plot(p1, p2, p3, p4, layout = (2,2), size = (1200,1000), dpi = 300,
             left_margin = (5,:mm), top_margin = (2,:mm), bottom_margin = (5,:mm))
-savefig(pout, "./data/plots/t2m_prob.pdf")
+savefig(pout, "./data/plots/t2m_prob_reverse.pdf")
 
 #  wind speed
 prm = 2
 p1 = plot(scores.lts, sc_crps[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "continuous ranked probability score (ms⁻¹)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           legend = :topleft, labels = labels, legendcolumns = 2, fg_legend = :transparent,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
@@ -274,7 +275,7 @@ p1 = plot(scores.lts, sc_crps[:,:,prm],
 p2 = plot(scores.lts, sc_mae[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "mean absolute error (ms⁻¹)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           legend = :false,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
@@ -283,29 +284,29 @@ p2 = plot(scores.lts, sc_mae[:,:,prm],
 p3 = plot(scores.lts, sc_crps[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "continuous ranked probability score (ms⁻¹)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           legend = false,
           #legend = :left, labels = [labels;labels], legendcolumns = 4, fg_legend = :transparent,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
           titleposition=:center)
 plot!(scores_raw.lts, scores_raw.crps[:,5:6,prm],
-      linewidth = attr.lwd, palette = cols[5:6], linestyle = :dash)
-annotate!([(6, 1.5, text("dashed lines:\nraw forecast models", 12, :left))])
+      linewidth = attr.lwd, palette = cols[5:6], linestyle = :solid)
+annotate!([(6, 1.5, text("solid lines:\nraw forecast models", 12, :left))])
 p4 = plot(scores.lts, sc_mae[:,:,prm],
           xticks = scores_raw.lts,
           xlabel = "lead time (h)", ylabel = "", title = "mean absolute error (ms⁻¹)",
-          linewidth = attr.lwd, palette = cols,
+          linewidth = attr.lwd, linestyle = lty_cal, palette = cols,
           #legend = :topleft, labels = labels, legendcolumns = 2, fg_legend = :transparent,
           titlefontsize = attr.fontsize, tickfontsize = attr.fontsize,
           legendfontsize = attr.fontsize-1, guidefontsize= attr.fontsize,
           titleposition=:center)
 plot!(scores_raw.lts, scores_raw.mae[:,:,prm],
-      linewidth = attr.lwd, palette = cols, linestyle = :dash, legend = false)
+      linewidth = attr.lwd, palette = cols, linestyle = :solid, legend = false)
 
 pout = plot(p1, p2, p3, p4, layout = (2,2), size = (1200,1000), dpi = 300,
             left_margin = (5,:mm), top_margin = (2,:mm), bottom_margin = (5,:mm))
-savefig(pout, "./data/plots/ws10m_prob.pdf")
+savefig(pout, "./data/plots/ws10m_prob_reverse.pdf")
 
 
 

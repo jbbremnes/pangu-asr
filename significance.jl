@@ -1,8 +1,8 @@
 #  testing statistical significance of BQN calibrated forecasts using
 #    - Diebold-Mariano hypothesis test of equal CRPS for each lead site and lead time
-#    - Benjamini and Hochberg (1995) approach to aggregate
+#    - Benjamini and Hochberg (1995) approach to adjust for multiple testing
 #
-#   julia --project=./   # 64 GB memory is probably required
+#   julia --project=./ --threads=auto  # 64 GB memory is probably required
 #   
 
 using DataFrames, CSV, Statistics, Distributions, NamedArrays
@@ -24,7 +24,7 @@ function get_forecasts(prm, model)
 end
 
 
-#  Benjamini and Hochberg (1995) procedure for false discovery rate at given level 
+#  Benjamini-Hochberg (1995) procedure to control the false discovery rate at given level 
 function bh_test(p; level = 0.05)
     M = length(p)
     psort = sort(p)
