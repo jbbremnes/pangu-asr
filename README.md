@@ -10,7 +10,7 @@ mkdir data         # could also be symbolic link to a directory for the data
 mkdir data/plots
 julia --project=./ 'using Pkg; Pkg.instantiate()'
 cd data
-wget ...
+wget https://zenodo.org/records/10210204/files/nwp+obs.jld2?download=1
 ```
 
 ##  Data
